@@ -225,7 +225,7 @@ def bfs_collect_faces(face_neighbors, start_face, max_faces=2048):
 print('labeled_faces_num: ',faces_test.shape[0])   # 580890
 
 # 确定生成submesh个数为m个
-m=25
+m=50
 iter=0
 while iter <m:
     # face_index =70610
@@ -348,14 +348,14 @@ while iter <m:
     mesh_trimesh.export(r'E:/MeshSementicSegment/train/sub_mesh_' + str(iter+1) + '_trimesh.ply' )
     '''
     # test
-    sub_mesh_=export_faces_and_colors_with_plyfile(gt_test_mesh, collected_faces_mesh,faces_test, r'E:/MeshSementicSegment/test/sub_mesh_'+str(iter+26)+'.ply')
+    sub_mesh_=export_faces_and_colors_with_plyfile(gt_test_mesh, collected_faces_mesh,faces_test, r'D:\Sematic_Dataset\RueMonge2014-varcity3dchallenge\data\ruemonge428\test/sub_mesh_'+str(iter+1)+'.ply')
     # open3d读写会遗失所有face_color信息
-    mesh_=o3d.io.read_triangle_mesh(r'E:/MeshSementicSegment/test/sub_mesh_'+str(iter+1)+'.ply')
+    mesh_=o3d.io.read_triangle_mesh(r'D:\Sematic_Dataset\RueMonge2014-varcity3dchallenge\data\ruemonge428\test/sub_mesh_'+str(iter+1)+'.ply')
     mesh_o3d=mesh_.remove_unreferenced_vertices()
-    sub_mesh_o3d=o3d.io.write_triangle_mesh(r'E:/MeshSementicSegment/test/sub_mesh_'+str(iter+26)+'_o3d.ply',mesh_o3d,write_ascii=True)
+    sub_mesh_o3d=o3d.io.write_triangle_mesh(r'D:\Sematic_Dataset\RueMonge2014-varcity3dchallenge\data\ruemonge428\test/sub_mesh_'+str(iter+1)+'_o3d.ply',mesh_o3d,write_ascii=True)
     # trimesh
-    mesh_trimesh =  trimesh.load_mesh(r'E:/MeshSementicSegment/test/sub_mesh_' + str(iter+26) + '.ply')
+    mesh_trimesh =  trimesh.load_mesh(r'D:\Sematic_Dataset\RueMonge2014-varcity3dchallenge\data\ruemonge428\test/sub_mesh_' + str(iter+1) + '.ply')
     # mesh.Trimesh.remove_unreferenced_vertices()   #在读入时会自动进行
     # 强制导出二进制格式的ply文件，文本打开会乱码，但读数据不影响
-    mesh_trimesh.export(r'E:/MeshSementicSegment/test/sub_mesh_' + str(iter+26) + '_trimesh.ply' )
+    mesh_trimesh.export(r'D:\Sematic_Dataset\RueMonge2014-varcity3dchallenge\data\ruemonge428\test/sub_mesh_' + str(iter+1) + '_trimesh.ply' )
     iter=iter+1
